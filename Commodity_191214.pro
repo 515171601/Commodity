@@ -5,9 +5,12 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     funtion.cpp \
-    data.cpp
+    data.cpp \
+    help.cpp
 
 HEADERS += \
     function.h \
     datatype.h \
-    data.h
+    data.h \
+    help.h \
+    header.h

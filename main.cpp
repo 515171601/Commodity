@@ -1,5 +1,6 @@
 #include <iostream>
-#include "function.h"
+#include "header.h"
+
 using namespace std;
 int main(){
 	cout<<"欢迎使用购物篮管理系统!\n";
@@ -9,15 +10,20 @@ int main(){
 		if(choice=='0')
 			break;
 		switch(choice){
-			case '1': //具体功能省略
+			case '1':
+				addCommodity (commodities,commodityNum);
 				break;
-			case '2': //具体功能省略
+			case '2':
+				removeCommodity(commodities,commodityNum);
 				break;
-			case '3': //具体功能省略
+			case '3':
+				viewCommodity(commodities,commodityNum);
 				break;
-			case '4': //具体功能省略
+			case '4':
+				displayCommodities(commodities,commodityNum);
 				break;
-			case '5': //具体功能省略
+			case '5':
+				checkOut(commodities,commodityNum);
 				break;
 			default:
 				cout<<"无效输入! 请重试!\n";
