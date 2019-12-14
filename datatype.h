@@ -1,7 +1,6 @@
 #ifndef DATATYPE_H
 #define DATATYPE_H
 
-#include "datatype.h"
 #include <string> //使用标准库中的 string 处理字符串
 struct CommodityInfo{
 	long id; //商品编号

@@ -55,7 +55,8 @@ OBJECTS       = release/main.o \
 DIST          =  function.h \
 		datatype.h \
 		data.h \
-		help.h ..\main.cpp \
+		help.h \
+		header.h ..\main.cpp \
 		..\funtion.cpp \
 		..\data.cpp \
 		..\help.cpp
@@ -105,11 +106,18 @@ compiler_clean:
 
 ####### Compile
 
-release/main.o: ../main.cpp ../function.h \
-		../datatype.h
+release/main.o: ../main.cpp ../header.h \
+		../datatype.h \
+		../function.h \
+		../help.h \
+		../data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\main.o ..\main.cpp
 
-release/funtion.o: ../funtion.cpp 
+release/funtion.o: ../funtion.cpp ../header.h \
+		../datatype.h \
+		../function.h \
+		../help.h \
+		../data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o release\funtion.o ..\funtion.cpp
 
 release/data.o: ../data.cpp ../datatype.h

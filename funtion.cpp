@@ -13,7 +13,7 @@ char menu(){
 	char choice;
 	cin>>choice;
 	return choice;
-}10
+}
 void displayCommodities(CommodityInfo *pCommodities, int num){
 	int i;
 	cout<<"商品种类: "<<num<<endl;

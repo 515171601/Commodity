@@ -55,7 +55,8 @@ OBJECTS       = debug/main.o \
 DIST          =  function.h \
 		datatype.h \
 		data.h \
-		help.h ..\main.cpp \
+		help.h \
+		header.h ..\main.cpp \
 		..\funtion.cpp \
 		..\data.cpp \
 		..\help.cpp
@@ -105,11 +106,18 @@ compiler_clean:
 
 ####### Compile
 
-debug/main.o: ../main.cpp ../function.h \
-		../datatype.h
+debug/main.o: ../main.cpp ../header.h \
+		../datatype.h \
+		../function.h \
+		../help.h \
+		../data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\main.cpp
 
-debug/funtion.o: ../funtion.cpp 
+debug/funtion.o: ../funtion.cpp ../header.h \
+		../datatype.h \
+		../function.h \
+		../help.h \
+		../data.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\funtion.o ..\funtion.cpp
 
 debug/data.o: ../data.cpp ../datatype.h
