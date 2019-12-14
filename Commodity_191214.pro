@@ -4,7 +4,10 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    funtion.cpp
+    funtion.cpp \
+    data.cpp
 
 HEADERS += \
-    function.h
+    function.h \
+    datatype.h \
+    data.h
