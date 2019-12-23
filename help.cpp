@@ -1,5 +1,16 @@
-#include <iostream>
+﻿#include <iostream>
 #include "datatype.h"
+#include "header.h"
+
+void reAllocMemory(CommodityInfo *&pCommodities,int num){
+	maxCommodityNum*=2;
+	CommodityInfo *temp=pCommodities;
+	pCommodities=new CommodityInfo[maxCommodityNum];
+	for(int i=0;i<num;++i)
+		pCommodities[i]=temp[i];
+	delete[] temp;
+}
+
 void setCommodityInfo (CommodityInfo *pCommodity){ //读取商品信息
 	fflush(stdin); //确保之前残留的回车被清理，商品名称取整行
 	std::cout<<" 输入商品名称: ";
@@ -28,6 +39,6 @@ void showCommodityInfo(CommodityInfo *pCommodity){
 	std::cout<<"商品编号(id):"<<pCommodity->id<<std::endl;
 	std::cout<<" 商品名称:"<<pCommodity->name<<std::endl;
 	std::cout<<" 商品总价:"<<getCommodityPrice(pCommodity)
-	   <<" (价格:"<<pCommodity->price<<", 数量:"
-	  <<pCommodity->num<<", 折扣:"<<pCommodity->discount<<" )\n";
+			<<" (价格:"<<pCommodity->price<<", 数量:"
+		   <<pCommodity->num<<", 折扣:"<<pCommodity->discount<<" )\n";
 }

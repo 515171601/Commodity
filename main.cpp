@@ -1,12 +1,11 @@
 ﻿#include <iostream>
 #include "header.h"
-#include <cstdio>
 
 using namespace std;
 
 int main(){
 	cout<<"欢迎使用购物篮管理系统!\n";
-	readData("commodity.dat");
+	readData("commodity2.dat");
 	char choice;
 	while(true){
 		choice=menu();
@@ -14,26 +13,27 @@ int main(){
 			break;
 		switch(choice){
 			case '1':
-				addCommodity (commodities,commodityNum);
+				addCommodity (pCommodities,commodityNum);
 				break;
 			case '2':
-				removeCommodity(commodities,commodityNum);
+				removeCommodity(pCommodities,commodityNum);
 				break;
 			case '3':
-				viewCommodity(commodities,commodityNum);
+				viewCommodity(pCommodities,commodityNum);
 				break;
 			case '4':
-				displayCommodities(commodities,commodityNum);
+				displayCommodities(pCommodities,commodityNum);
 				break;
 			case '5':
-				checkOut(commodities,commodityNum);
+				checkOut(pCommodities,commodityNum);
 				break;
 			default:
 				cout<<"无效输入! 请重试!\n";
 				break;
 		}
 	}
-	writeData("commodity.dat");
-	cout<<"再见!\n";
+	writeData("commodity2.dat");
+	delete [] pCommodities;
+	cout<<"再见\n";
 	return 0;
 }

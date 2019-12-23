@@ -1,8 +1,11 @@
-#ifndef DATA_H
+﻿#ifndef DATA_H
 #define DATA_H
 
 #include "datatype.h"
-extern CommodityInfo commodities[MAX_COMMODITY_NUM];
+
+extern int maxCommodityNum;
+extern CommodityInfo *pCommodities;
+
 extern int commodityNum;
 
 #endif // DATA_H

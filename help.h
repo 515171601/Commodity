@@ -1,4 +1,4 @@
-#ifndef HELP_HEADER
+﻿#ifndef HELP_HEADER
 #define HELP_HEADER
 #include "datatype.h"
 CommodityInfo *findCommodityById(CommodityInfo *pCommodities,
@@ -6,4 +6,7 @@ CommodityInfo *findCommodityById(CommodityInfo *pCommodities,
 void showCommodityInfo(CommodityInfo *pCommodity);
 void setCommodityInfo(CommodityInfo *pCommodity);
 double getCommodityPrice(CommodityInfo *pCommodity);
+void reAllocMemory(CommodityInfo *&pCommodities,int num);
+
+
 #endif
