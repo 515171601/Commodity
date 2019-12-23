@@ -19,12 +19,15 @@ int main(){
 				removeCommodity(pCommodities,commodityNum);
 				break;
 			case '3':
-				viewCommodity(pCommodities,commodityNum);
+				editCommodity(pCommodities, commodityNum);
 				break;
 			case '4':
-				displayCommodities(pCommodities,commodityNum);
+				viewCommodity(pCommodities,commodityNum);
 				break;
 			case '5':
+				displayCommodities(pCommodities,commodityNum);
+				break;
+			case '6':
 				checkOut(pCommodities,commodityNum);
 				break;
 			default:

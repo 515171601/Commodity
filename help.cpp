@@ -23,6 +23,27 @@ void setCommodityInfo (CommodityInfo *pCommodity){ //读取商品信息
 	std::cin>>pCommodity->discount;
 }
 
+void setCommodityPrice(CommodityInfo *pCommodity){
+	while(getchar()!='\n');
+	std::cout<<"输入商品价格: ";
+	std::cin>>pCommodity->price;
+	return ;
+}
+
+void setCommodityNum(CommodityInfo *pCommodity){
+	while(getchar()!='\n');
+	std::cout<<"输入商品数量: ";
+	std::cin>>pCommodity->num;
+	return ;
+}
+
+void setCommodityDiscount(CommodityInfo *pCommodity){
+	while(getchar()!='\n');
+	std::cout<<"输入商品折扣: ";
+	std::cin>>pCommodity->discount;
+	return ;
+}
+
 int findCommodityById (CommodityInfo *pCommodities,
 					   int num, long id){
 	int index=0;
@@ -34,18 +55,6 @@ int findCommodityById (CommodityInfo *pCommodities,
 	return NOT_FOUND;
 }
 
-//CommodityInfo *findCommodityById(CommodityInfo *pCommodities,
-//								 int num, long id){
-
-//	CommodityInfo *pCommodity=pCommodities;
-//	for(; pCommodity < pCommodities+num; pCommodity++){
-//		if(pCommodity->id==id){
-//			return pCommodity;
-//		}
-//	}
-//	return nullptr;
-//}
-
 double getCommodityPrice(CommodityInfo *pCommodity){
 	return pCommodity->price*pCommodity->num*pCommodity->discount;
 }
@@ -56,4 +65,18 @@ void showCommodityInfo(CommodityInfo *pCommodity){
 	std::cout<<" 商品总价:"<<getCommodityPrice(pCommodity)
 			<<" (价格:"<<pCommodity->price<<", 数量:"
 		   <<pCommodity->num<<", 折扣:"<<pCommodity->discount<<" )\n";
+}
+
+char editMenu(void){
+	while(getchar()!='\n');	//清空缓冲区
+	std::cout<<"选择需要修改的信息:\n";
+	std::cout<<"0) 商品数量\n";
+	std::cout<<"1) 商品价格\n";
+	std::cout<<"2) 商品折扣\n";
+	std::cout<<"3) 退出\n";
+	std::cout<<"请输入功能选项: ";
+	char choois;
+	std::cin>>choois;
+
+	return choois;
 }

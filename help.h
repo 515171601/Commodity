@@ -10,6 +10,11 @@ void showCommodityInfo(CommodityInfo *pCommodity);
 void setCommodityInfo(CommodityInfo *pCommodity);
 double getCommodityPrice(CommodityInfo *pCommodity);
 void reAllocMemory(CommodityInfo *&pCommodities,int num);
+char editMenu(void);
+void setCommodityPrice(CommodityInfo *pCommodity);
+void setCommodityNum(CommodityInfo *pCommodity);
+void setCommodityDiscount(CommodityInfo *pCommodity);
+
 
 
 #endif

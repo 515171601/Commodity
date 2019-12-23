@@ -4,6 +4,7 @@
 
 using namespace std;
 
+//#define DEBUG
 
 void readData(std::string filename){
 	ifstream in(filename);
@@ -43,14 +44,16 @@ char menu(){
 	cout<<" 0) 退出系统\n";
 	cout<<" 1) 向购物篮添加商品\n";
 	cout<<" 2) 从购物篮移除商品\n";
-	cout<<" 3) 查看指定商品\n";
-	cout<<" 4) 查看所有商品\n";
-	cout<<" 5) 结算\n";
+	cout<<" 3) 修改商品信息\n";
+	cout<<" 4) 查看指定商品\n";
+	cout<<" 5) 查看所有商品\n";
+	cout<<" 6) 结算\n";
 	cout<<"请输入功能选项:";
 	char choice;
 	cin>>choice;
 	return choice;
 }
+
 void displayCommodities(CommodityInfo *pCommodities, int num){
 	int i;
 	cout<<"商品种类: "<<num<<endl;
@@ -59,6 +62,7 @@ void displayCommodities(CommodityInfo *pCommodities, int num){
 	}
 	cout<<endl;
 }
+
 void addCommodity(CommodityInfo *&pCommodities, int &num){
 	int id;
 	cout<<" 输入商品编号(id): ";
@@ -110,6 +114,50 @@ void removeCommodity(CommodityInfo *pCommodities, int &num){
 	}
 	cout<<"商品移除成功!\n\n";
 }
+
+void editCommodity(CommodityInfo *pCommodities, int num){
+	int id;
+	cout<<" 输入商品的编号(id): ";
+	cin>>id;
+	CommodityInfo *pCommodity=nullptr;
+	int index=findCommodityById(pCommodities,num,id);
+	if(index==NOT_FOUND){
+		cout<<"编号为"<<id<<"的商品不存在!\n\n";
+		return;
+	}else{
+		pCommodity=pCommodities+index;
+	}
+	while(true){
+		char choois=editMenu ();
+#ifdef DEBUG
+		cout<<choois;
+		showCommodityInfo(pCommodity);
+#endif
+		if(choois=='3'){
+			break;
+		}
+		switch (choois){
+			case '0':
+				setCommodityNum(pCommodity);
+				break;
+			case '1':
+				setCommodityPrice(pCommodity);
+				break;
+			case '2':
+				setCommodityDiscount(pCommodity);
+				break;
+			default:
+				cout<<"无效输入, 请重试!\n";
+		}
+	}
+	cout<<"编辑成功!\n";
+	cout<<"修正后的商品信息如下: \n";
+	showCommodityInfo(pCommodity);
+	cout<<endl;
+	return ;
+}
+
+
 void viewCommodity(CommodityInfo *pCommodities, int num){
 	int id;
 	cout<<" 输入商品的编号(id): ";

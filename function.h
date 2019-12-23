@@ -11,5 +11,6 @@ void viewCommodity(CommodityInfo *pCommodities, int num);
 void checkOut(CommodityInfo *pCommodities, int num);
 void readData(std::string filename);
 void writeData(std::string filename);
+void editCommodity(CommodityInfo *pCommodities, int num);
 
 #endif
