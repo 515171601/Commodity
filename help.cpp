@@ -22,19 +22,34 @@ void setCommodityInfo (CommodityInfo *pCommodity){ //读取商品信息
 	std::cout<<" 输入商品折扣: ";
 	std::cin>>pCommodity->discount;
 }
-CommodityInfo *findCommodityById(CommodityInfo *pCommodities,
-								 int num, long id){
-	CommodityInfo *pCommodity=pCommodities;
-	for(; pCommodity < pCommodities+num; pCommodity++){
-		if(pCommodity->id==id){
-			return pCommodity;
+
+int findCommodityById (CommodityInfo *pCommodities,
+					   int num, long id){
+	int index=0;
+	for(;index<num;index++){
+		if((pCommodities+index)->id==id){
+			return index;
 		}
 	}
-	return nullptr;
+	return NOT_FOUND;
 }
+
+//CommodityInfo *findCommodityById(CommodityInfo *pCommodities,
+//								 int num, long id){
+
+//	CommodityInfo *pCommodity=pCommodities;
+//	for(; pCommodity < pCommodities+num; pCommodity++){
+//		if(pCommodity->id==id){
+//			return pCommodity;
+//		}
+//	}
+//	return nullptr;
+//}
+
 double getCommodityPrice(CommodityInfo *pCommodity){
 	return pCommodity->price*pCommodity->num*pCommodity->discount;
 }
+
 void showCommodityInfo(CommodityInfo *pCommodity){
 	std::cout<<"商品编号(id):"<<pCommodity->id<<std::endl;
 	std::cout<<" 商品名称:"<<pCommodity->name<<std::endl;

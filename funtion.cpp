@@ -63,9 +63,12 @@ void addCommodity(CommodityInfo *&pCommodities, int &num){
 	int id;
 	cout<<" 输入商品编号(id): ";
 	cin>>id;
-	CommodityInfo *pCommodity=
-			findCommodityById(pCommodities,num,id);
-	if(pCommodity!=nullptr){//找到商品，累加数量
+	int index=findCommodityById(pCommodities,num,id);
+
+	CommodityInfo *pCommodity=pCommodities;
+
+	if(index!=NOT_FOUND){//找到商品，累加数量
+		pCommodity=pCommodities+index;
 		cout<<"编号为"<<id<<"的商品已经存在!\n";
 		cout<<"请输入增加的商品数量: ";
 		int number;
@@ -86,11 +89,13 @@ void removeCommodity(CommodityInfo *pCommodities, int &num){
 	int id;
 	cout<<" 输入商品编号(id): ";
 	cin>>id;
-	CommodityInfo *pCommodity=
-			findCommodityById(pCommodities,num,id);
-	if(pCommodity==nullptr){
+	CommodityInfo *pCommodity=nullptr;
+	int index=findCommodityById(pCommodities,num,id);
+	if(index==NOT_FOUND){
 		cout<<"编号为"<<id<<"的商品不存在!\n\n";
 		return;
+	}else{
+		pCommodity=pCommodities+index;
 	}
 	num--;
 	CommodityInfo *pNext=pCommodity+1;
@@ -109,11 +114,13 @@ void viewCommodity(CommodityInfo *pCommodities, int num){
 	int id;
 	cout<<" 输入商品的编号(id): ";
 	cin>>id;
-	CommodityInfo *pCommodity=
-			findCommodityById(pCommodities,num,id);
-	if(pCommodity==nullptr){
+	CommodityInfo *pCommodity=nullptr;
+	int index=findCommodityById(pCommodities,num,id);
+	if(index==NOT_FOUND){
 		cout<<"编号为"<<id<<"的商品不存在!\n\n";
 		return;
+	}else{
+		pCommodity=pCommodities+index;
 	}
 	showCommodityInfo(pCommodity);
 	cout<<endl;
