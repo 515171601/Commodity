@@ -1,7 +1,39 @@
-#include <iostream>
+﻿#include <iostream>
 #include "header.h"
+#include <fstream>
 
 using namespace std;
+
+
+void readData(std::string filename){
+	ifstream in(filename);
+	if(in){
+		in>>commodityNum;
+		if(commodityNum>MAX_COMMODITY_NUM)
+			commodityNum=MAX_COMMODITY_NUM;
+		string buf;
+		for(int i=0;i<commodityNum;++i){
+			in>>commodities[i].id;
+			getline(in,buf);
+			getline(in,commodities[i].name);
+			in>>commodities[i].price>>commodities[i].num
+					>>commodities[i].discount;
+		}
+	}
+}
+void writeData(std::string filename){
+	ofstream out(filename);
+	if(out){
+		out<<commodityNum<<endl;
+		for(int i=0;i<commodityNum;++i){
+			out<<commodities[i].id<<endl;
+			out<<commodities[i].name<<endl;
+			out<<commodities[i].price<<" "<<commodities[i].num
+			  <<" "<<commodities[i].discount<<endl;
+		}
+	}
+}
+
 char menu(){
 	cout<<" 0) 退出系统\n";
 	cout<<" 1) 向购物篮添加商品\n";

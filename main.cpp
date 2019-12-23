@@ -1,9 +1,12 @@
-#include <iostream>
+﻿#include <iostream>
 #include "header.h"
+#include <cstdio>
 
 using namespace std;
+
 int main(){
 	cout<<"欢迎使用购物篮管理系统!\n";
+	readData("commodity.dat");
 	char choice;
 	while(true){
 		choice=menu();
@@ -30,6 +33,7 @@ int main(){
 				break;
 		}
 	}
+	writeData("commodity.dat");
 	cout<<"再见!\n";
 	return 0;
 }
