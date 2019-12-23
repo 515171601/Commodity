@@ -51,10 +51,35 @@ char menu(){
 	cout<<"请输入功能选项:";
 	char choice;
 	cin>>choice;
+	while(getchar()!='\n');
 	return choice;
 }
 
+
+
 void displayCommodities(CommodityInfo *pCommodities, int num){
+	char choois=displayMenu ();
+	while(choois<'0'||choois>'4'){
+		cout<<"无效输入, 请重试!\n";
+		choois=displayMenu ();
+	}
+	switch(choois){
+		case '0':
+			sortById (pCommodities, num);
+			break;
+		case '1':
+			sortByName (pCommodities, num);
+			break;
+		case '2':
+			sortByPrice (pCommodities, num);
+			break;
+		case '3':
+			sortByDiscount (pCommodities, num);
+			break;
+		case '4':
+			sortByTotalPrice (pCommodities, num);
+			break;
+	}
 	int i;
 	cout<<"商品种类: "<<num<<endl;
 	for(i=0;i<num;i++) {

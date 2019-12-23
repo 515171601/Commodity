@@ -1,6 +1,7 @@
 ﻿#include <iostream>
 #include "datatype.h"
 #include "header.h"
+#include <algorithm>
 
 void reAllocMemory(CommodityInfo *&pCommodities,int num){
 	maxCommodityNum*=2;
@@ -23,26 +24,7 @@ void setCommodityInfo (CommodityInfo *pCommodity){ //读取商品信息
 	std::cin>>pCommodity->discount;
 }
 
-void setCommodityPrice(CommodityInfo *pCommodity){
-	while(getchar()!='\n');
-	std::cout<<"输入商品价格: ";
-	std::cin>>pCommodity->price;
-	return ;
-}
 
-void setCommodityNum(CommodityInfo *pCommodity){
-	while(getchar()!='\n');
-	std::cout<<"输入商品数量: ";
-	std::cin>>pCommodity->num;
-	return ;
-}
-
-void setCommodityDiscount(CommodityInfo *pCommodity){
-	while(getchar()!='\n');
-	std::cout<<"输入商品折扣: ";
-	std::cin>>pCommodity->discount;
-	return ;
-}
 
 int findCommodityById (CommodityInfo *pCommodities,
 					   int num, long id){
@@ -68,7 +50,6 @@ void showCommodityInfo(CommodityInfo *pCommodity){
 }
 
 char editMenu(void){
-	while(getchar()!='\n');	//清空缓冲区
 	std::cout<<"选择需要修改的信息:\n";
 	std::cout<<"0) 商品数量\n";
 	std::cout<<"1) 商品价格\n";
@@ -77,6 +58,87 @@ char editMenu(void){
 	std::cout<<"请输入功能选项: ";
 	char choois;
 	std::cin>>choois;
-
+	while(getchar()!='\n');
 	return choois;
 }
+
+void setCommodityPrice(CommodityInfo *pCommodity){
+	std::cout<<"输入商品价格: ";
+	std::cin>>pCommodity->price;
+	while(getchar()!='\n');
+	return ;
+}
+
+void setCommodityNum(CommodityInfo *pCommodity){
+	std::cout<<"输入商品数量: ";
+	std::cin>>pCommodity->num;
+	while(getchar()!='\n');
+	return ;
+}
+
+void setCommodityDiscount(CommodityInfo *pCommodity){
+	std::cout<<"输入商品折扣: ";
+	std::cin>>pCommodity->discount;
+	while(getchar()!='\n');
+	return ;
+}
+
+char displayMenu(void){
+	std::cout<<"选择打印时的排序标准\n";
+	std::cout<<"0) 按商品ID升序输出\n";
+	std::cout<<"1) 按商品名称升序输出\n";
+	std::cout<<"2) 按商品价格升序输出\n";
+	std::cout<<"3) 按商品折扣升序输出\n";
+	std::cout<<"4) 按商品总价格升序输出\n";
+	char choois;
+	std::cin>>choois;
+	while(getchar()!='\n');
+	return choois;
+}
+
+void sortById(CommodityInfo *pCommodities, int num){
+	std::sort(pCommodities, pCommodities+num,
+			  [](CommodityInfo &c1, CommodityInfo &c2)->bool{
+		return c1.id<c2.id;
+	});
+	return ;
+}
+
+void sortByName(CommodityInfo *pCommodities, int num){
+	std::sort(pCommodities, pCommodities+num,
+			  [](CommodityInfo &c1, CommodityInfo &c2)->bool{
+		return c1.name<c2.name;
+	});
+	return ;
+}
+
+void sortByPrice(CommodityInfo *pCommodities, int num){
+	std::sort(pCommodities, pCommodities+num,
+			  [](CommodityInfo &c1, CommodityInfo &c2)->bool{
+		return c1.price<c2.price;
+	});
+	return ;
+}
+
+void sortByDiscount(CommodityInfo *pCommodities, int num){
+	std::sort(pCommodities, pCommodities+num,
+			  [](CommodityInfo &c1, CommodityInfo &c2)->bool{
+		return c1.discount<c2.discount;
+	});
+	return ;
+}
+
+void sortByTotalPrice(CommodityInfo *pCommodities, int num){
+	std::sort(pCommodities, pCommodities+num,
+			  [](CommodityInfo &c1, CommodityInfo &c2)->bool{
+		return getCommodityPrice(&c1)<getCommodityPrice(&c2);
+	});
+	return ;
+}
+
+
+
+
+
+
+

@@ -14,6 +14,13 @@ char editMenu(void);
 void setCommodityPrice(CommodityInfo *pCommodity);
 void setCommodityNum(CommodityInfo *pCommodity);
 void setCommodityDiscount(CommodityInfo *pCommodity);
+char displayMenu(void);
+void sortById(CommodityInfo *pCommodities, int num);
+void sortByName(CommodityInfo *pCommodities, int num);
+void sortByPrice(CommodityInfo *pCommodities, int num);
+void sortByDiscount(CommodityInfo *pCommodities, int num);
+void sortByTotalPrice(CommodityInfo *pCommodities, int num);
+
 
 
 
