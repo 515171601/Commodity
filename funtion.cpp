@@ -65,7 +65,7 @@ void addCommodity(CommodityInfo *&pCommodities, int &num){
 	cin>>id;
 	int index=findCommodityById(pCommodities,num,id);
 
-	CommodityInfo *pCommodity=pCommodities;
+	CommodityInfo *pCommodity=nullptr;
 
 	if(index!=NOT_FOUND){//找到商品，累加数量
 		pCommodity=pCommodities+index;
