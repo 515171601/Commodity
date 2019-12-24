@@ -1,5 +1,6 @@
 ﻿#include <iostream>
 #include "commodity.h"
+#include <sstream>
 
 using namespace std;
 
@@ -17,4 +18,12 @@ double Commodity::getNetPrice()const{
 void Commodity::output()const{
 	cout<<" 商品编号(id):"<<id<<endl;
 	cout<<" 商品名称:"<<name<<endl;
+}
+
+string Commodity::getInfo()const{
+	ostringstream ostr;
+	ostr<<getId()<<endl;
+	ostr<<getName()<<endl;
+	ostr<<price<<" "<<num<<" ";
+	return ostr.str();
 }
