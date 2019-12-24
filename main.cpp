@@ -1,39 +1,16 @@
 ﻿#include <iostream>
-#include "Commodity.h"
-#include "CommodityManage.h"
-#include "function.h"
+#include "commodity.h"
+#include "normalcommodity.h"
+#include "overseacommodity.h"
 using namespace std;
 int main(){
-	cout<<"欢迎使用购物篮管理系统!\n";
-	char choice;
-	CommodityManage cm;
-	cm.readData("d:\\commodity03.data");
-	while(true){
-		choice=menu();
-		if(choice=='0')
-			break;
-		switch(choice){
-			case '1':
-				doAddCommodity(cm);
-				break;
-			case '2':
-				doRemoveCommodity(cm);
-				break;
-			case '3':
-				doViewCommodity(cm);
-				break;
-			case '4':
-				doViewAllCommodity(cm);
-				break;
-			case '5':
-				doCheckout(cm);
-				break;
-			default:
-				cout<<"无效输入! 请重试!\n";
-				break;
-		}
-	}
-	cout<<"再见!\n";
-	cm.saveData("d:\\commodity03.data");
+	NormalCommodity c1("Java Programming",108,2,0.9);
+	c1.output();
+	OverseaCommodity c2("C++ Programming",100,3,0.8,23.4);
+	c2.output();
+	Commodity *p=&c1;
+	p->output();
+	p=&c2;
+	p->output();
 	return 0;
 }

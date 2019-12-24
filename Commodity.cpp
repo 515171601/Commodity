@@ -1,23 +1,20 @@
 ﻿#include <iostream>
-#include <string>
-#include "Commodity.h"
+#include "commodity.h"
 
 using namespace std;
 
 long Commodity::nextId=100;
-Commodity::Commodity(string n,double p,int nu,double d)
-	:Commodity(autoNextId(),n,p,nu,d){}
+Commodity::Commodity(string n,double p,int nu)
+	:Commodity(autoNextId(),n,p,nu){}
 
-Commodity::Commodity(long i,std::string n,double p,int nu,double d)
-	:id(i),name(n),price(p),num(nu),discount(d){}
+Commodity::Commodity(long i,std::string n,double p,int nu)
+	:id(i),name(n),price(p),num(nu){}
 
 double Commodity::getNetPrice()const{
-	return price*num*discount;
+	return price*num;
 }
+
 void Commodity::output()const{
-	cout<<"商品编号(id):"<<id<<endl;
-	cout<<"商品名称:"<<name<<endl;
-	cout<<"商品总价:"<<getNetPrice()
-	   <<" (价格:"<<price<<", 数量:"<<num<<", 折扣:"
-	  <<discount<<" )\n";
+	cout<<" 商品编号(id):"<<id<<endl;
+	cout<<" 商品名称:"<<name<<endl;
 }

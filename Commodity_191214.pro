@@ -5,10 +5,10 @@ CONFIG -= qt
 
 SOURCES += main.cpp \
     Commodity.cpp \
-    CommodityManage.cpp \
-    function.cpp
+    NormalCommodity.cpp \
+    OverseaCommodity.cpp
 
 HEADERS += \
-    CommodityManage.h \
     Commodity.h \
-    function.h
+    OverseaCommodity.h \
+    NormalCommodity.h
