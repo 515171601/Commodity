@@ -1,42 +1,37 @@
 ﻿#include <iostream>
-#include "header.h"
-
+#include "Commodity.h"
+#include "CommodityManage.h"
+#include "function.h"
 using namespace std;
-
 int main(){
 	cout<<"欢迎使用购物篮管理系统!\n";
-	readData("commodity2.dat");
 	char choice;
+	CommodityManage cm;
 	while(true){
 		choice=menu();
 		if(choice=='0')
 			break;
 		switch(choice){
 			case '1':
-				addCommodity (pCommodities,commodityNum);
+				doAddCommodity(cm);
 				break;
 			case '2':
-				removeCommodity(pCommodities,commodityNum);
+				doRemoveCommodity(cm);
 				break;
 			case '3':
-				editCommodity(pCommodities, commodityNum);
+				doViewCommodity(cm);
 				break;
 			case '4':
-				viewCommodity(pCommodities,commodityNum);
+				doViewAllCommodity(cm);
 				break;
 			case '5':
-				displayCommodities(pCommodities,commodityNum);
-				break;
-			case '6':
-				checkOut(pCommodities,commodityNum);
+				doCheckout(cm);
 				break;
 			default:
 				cout<<"无效输入! 请重试!\n";
 				break;
 		}
 	}
-	writeData("commodity2.dat");
-	delete [] pCommodities;
-	cout<<"再见\n";
+	cout<<"再见!\n";
 	return 0;
 }

@@ -1,16 +1,10 @@
-﻿#ifndef FUNCTION_HEADER
-#define FUNCTION_HEADER
-
-#include "datatype.h"
-
+﻿#ifndef FUNCTION_H
+#define FUNCTION_H
+#include "CommodityManage.h"
 char menu();
-void displayCommodities(CommodityInfo *pCommodities, int num);
-void addCommodity(CommodityInfo *&pCommodities, int &num);
-void removeCommodity(CommodityInfo *pCommodities, int &num);
-void viewCommodity(CommodityInfo *pCommodities, int num);
-void checkOut(CommodityInfo *pCommodities, int num);
-void readData(std::string filename);
-void writeData(std::string filename);
-void editCommodity(CommodityInfo *pCommodities, int num);
-
-#endif
+void doAddCommodity(CommodityManage& cm);
+void doRemoveCommodity(CommodityManage& cm);
+void doViewCommodity(const CommodityManage& cm);
+void doViewAllCommodity(const CommodityManage& cm);
+void doCheckout(const CommodityManage& cm);
+#endif // FUNCTION_H

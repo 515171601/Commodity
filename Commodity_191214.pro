@@ -4,13 +4,11 @@ CONFIG -= app_bundle
 CONFIG -= qt
 
 SOURCES += main.cpp \
-    funtion.cpp \
-    data.cpp \
-    help.cpp
+    Commodity.cpp \
+    CommodityManage.cpp \
+    function.cpp
 
 HEADERS += \
-    function.h \
-    datatype.h \
-    data.h \
-    help.h \
-    header.h
+    CommodityManage.h \
+    Commodity.h \
+    function.h

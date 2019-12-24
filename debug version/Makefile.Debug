@@ -44,22 +44,20 @@ OBJECTS_DIR   = debug
 ####### Files
 
 SOURCES       = ..\main.cpp \
-		..\funtion.cpp \
-		..\data.cpp \
-		..\help.cpp 
+		..\Commodity.cpp \
+		..\CommodityManage.cpp \
+		..\function.cpp 
 OBJECTS       = debug/main.o \
-		debug/funtion.o \
-		debug/data.o \
-		debug/help.o
+		debug/Commodity.o \
+		debug/CommodityManage.o \
+		debug/function.o
 
-DIST          =  function.h \
-		datatype.h \
-		data.h \
-		help.h \
-		header.h ..\main.cpp \
-		..\funtion.cpp \
-		..\data.cpp \
-		..\help.cpp
+DIST          =  CommodityManage.h \
+		Commodity.h \
+		function.h ..\main.cpp \
+		..\Commodity.cpp \
+		..\CommodityManage.cpp \
+		..\function.cpp
 QMAKE_TARGET  = Commodity_191214
 DESTDIR        = debug\ #avoid trailing-slash linebreak
 TARGET         = Commodity_191214.exe
@@ -82,7 +80,7 @@ dist:
 	$(ZIP) Commodity_191214.zip $(SOURCES) $(DIST) ..\..\Commodity_191214.pro ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\spec_pre.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\qdevice.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\device_config.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\common\angle.conf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\qconfig.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dcore_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dinput_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dlogic_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquick_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickinput_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3dquickrender_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_3drender_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axbase_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axcontainer_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_axserver_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bluetooth_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_bootstrap_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_clucene_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_concurrent_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_core_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_dbus_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designer_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_designercomponents_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_gui_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_help_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_labscontrols_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_labstemplates_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_location.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_location_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimedia_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_multimediawidgets_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_network_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_nfc_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_opengl_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_openglextensions_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_platformsupport_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_positioning_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_printsupport_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qml_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmldevtools_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qmltest_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_qtmultimediaquicktools_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quick_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickparticles_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_quickwidgets_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_script.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_script_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_scripttools_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sensors_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialbus_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_serialport_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_sql_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_svg_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_testlib_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uiplugin.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_uitools_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_webchannel_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_websockets_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_widgets_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_winextras_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xml_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\modules\qt_lib_xmlpatterns_private.pri ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\qt_functions.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\qt_config.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\win32\qt_config.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\win32-g++\qmake.conf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\spec_post.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\exclusive_builds.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\default_pre.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\win32\default_pre.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\resolve_config.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\exclusive_builds_post.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\default_post.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\build_pass.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\win32\console.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\qml_debug.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\win32\rtti.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\precompile_header.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\warn_on.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\file_copies.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\testcase_targets.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\exceptions.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\yacc.prf ..\..\..\..\qt\5.6\mingw49_32\mkspecs\features\lex.prf ..\Commodity_191214.pro  NO_PCH_SOURCES YACCSOURCES YACCSOURCES LEXSOURCES 
 
 clean: compiler_clean 
-	-$(DEL_FILE) debug\main.o debug\funtion.o debug\data.o debug\help.o
+	-$(DEL_FILE) debug\main.o debug\Commodity.o debug\CommodityManage.o debug\function.o
 
 distclean: clean 
 	-$(DEL_FILE) $(DESTDIR_TARGET)
@@ -106,25 +104,21 @@ compiler_clean:
 
 ####### Compile
 
-debug/main.o: ../main.cpp ../header.h \
-		../datatype.h \
-		../function.h \
-		../help.h \
-		../data.h
+debug/main.o: ../main.cpp ../Commodity.h \
+		../CommodityManage.h \
+		../function.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\main.o ..\main.cpp
 
-debug/funtion.o: ../funtion.cpp ../header.h \
-		../datatype.h \
-		../function.h \
-		../help.h \
-		../data.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\funtion.o ..\funtion.cpp
+debug/Commodity.o: ../Commodity.cpp ../Commodity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\Commodity.o ..\Commodity.cpp
 
-debug/data.o: ../data.cpp ../datatype.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\data.o ..\data.cpp
+debug/CommodityManage.o: ../CommodityManage.cpp ../CommodityManage.h \
+		../Commodity.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\CommodityManage.o ..\CommodityManage.cpp
 
-debug/help.o: ../help.cpp ../datatype.h
-	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\help.o ..\help.cpp
+debug/function.o: ../function.cpp ../function.h \
+		../CommodityManage.h
+	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\function.o ..\function.cpp
 
 ####### Install
 
