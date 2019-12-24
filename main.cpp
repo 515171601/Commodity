@@ -7,6 +7,7 @@ int main(){
 	cout<<"欢迎使用购物篮管理系统!\n";
 	char choice;
 	CommodityManage cm;
+	cm.readData("d:\\commodity03.data");
 	while(true){
 		choice=menu();
 		if(choice=='0')
@@ -33,5 +34,6 @@ int main(){
 		}
 	}
 	cout<<"再见!\n";
+	cm.saveData("d:\\commodity03.data");
 	return 0;
 }

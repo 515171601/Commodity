@@ -17,6 +17,8 @@ public:
 	double getDiscount()const{return discount;}
 	double getNetPrice()const;
 	void output()const;
+	static void setNextId(long id){nextId=id;}
+	static long getNextId(){return nextId;}
 private:
 	static long nextId;
 	long autoNextId(){return nextId++;}

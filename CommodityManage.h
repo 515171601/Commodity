@@ -14,6 +14,8 @@ public:
 	void viewCommodity(int id)const;
 	void viewAllCommodities()const;
 	void checkOut()const;
+	void readData(std::string filename);
+	void saveData(std::string filename);
 private:
 	Commodity *pCommodities; //指向动态创建的商品数组
 	int maxSize; //当前分配的空间上限

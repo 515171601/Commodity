@@ -11,6 +11,7 @@ char menu(){
 	cout<<"请输入功能选项:";
 	char choice;
 	cin>>choice;
+//	while(getchar()!='\n');
 	return choice;
 }
 void doAddCommodity(CommodityManage& cm){
@@ -23,18 +24,21 @@ void doAddCommodity(CommodityManage& cm){
 	cout<<"Input price,num,discount:";
 	cin>>price>>num>>discount;
 	cm.addCommodity(Commodity(name,price,num,discount));
+//	while(getchar()!='\n');
 }
 void doRemoveCommodity(CommodityManage& cm){
 	long id;
 	cout<<"Input id:";
 	cin>>id;
 	cm.removeCommodity(id);
+//	while(getchar()!='\n');
 }
 void doViewCommodity(const CommodityManage& cm){
 	long id;
 	cout<<"Input id:";
 	cin>>id;
 	cm.viewCommodity(id);
+//	while(getchar()!='\n');
 }
 void doViewAllCommodity(const CommodityManage& cm){
 	cm.viewAllCommodities();

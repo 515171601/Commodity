@@ -1,6 +1,10 @@
 ﻿#include "CommodityManage.h"
 #include "Commodity.h"
+#include <string>
+#include <fstream>
 #include <iostream>
+
+#define DEBUG
 
 CommodityManage::CommodityManage()
 	:CommodityManage(100){}
@@ -40,6 +44,7 @@ void CommodityManage::addCommodity(const Commodity& c){
 	pCommodities[size]=c;
 	size++;
 }
+
 void CommodityManage::removeCommodity(int id){
 	Commodity* pCommodity=findCommodityById(id);
 	if(pCommodity==nullptr){
@@ -54,6 +59,7 @@ void CommodityManage::removeCommodity(int id){
 		pCommodity++;
 	}
 }
+
 void CommodityManage::viewCommodity(int id)const{
 	Commodity* pCommodity=findCommodityById(id);
 	if(pCommodity==nullptr){
@@ -62,11 +68,13 @@ void CommodityManage::viewCommodity(int id)const{
 	}
 	pCommodity->output();
 }
+
 void CommodityManage::viewAllCommodities()const{
 	std::cout<<"商品种类:"<<size<<std::endl;
 	for(int i=0;i<size;++i)
 		pCommodities[i].output();
 }
+
 void CommodityManage::checkOut()const{
 	double totalPrice=0;
 	int totalNum=0;
@@ -76,12 +84,53 @@ void CommodityManage::checkOut()const{
 		double price=(pCommodities+i)->getNetPrice();
 		std::cout<<" "<<pCommodities[i].getName()<<"\t";
 		std::cout<<pCommodities[i].getPrice()<<"\t"
-		   <<pCommodities[i].getNum()<<"\t"
-		  <<pCommodities[i].getDiscount()<<"\t"
-		 <<price<<std::endl;
+				<<pCommodities[i].getNum()<<"\t"
+			   <<pCommodities[i].getDiscount()<<"\t"
+			  <<price<<std::endl;
 		totalPrice+=price;
 		totalNum+=pCommodities[i].getNum();
 	}
 	std::cout<<"购物篮商品总件数: "<<totalNum<<"\n";
 	std::cout<<"购物篮结算总价: "<<totalPrice<<std::endl;
+}
+
+void CommodityManage::saveData(std::string filename){
+	std::ofstream out(filename);
+	if(out){
+		out<<maxSize<<std::endl;
+		out<<size<<std::endl;
+		out<<Commodity::getNextId()<<std::endl;
+		for(int i=0;i<size;++i){
+			out<< pCommodities[i].getId()<<std::endl;
+			out<< pCommodities[i].getName()<<std::endl;
+			out<< pCommodities[i].getPrice()<<" "
+			   << pCommodities[i].getNum()<<" "
+			   << pCommodities[i].getDiscount()<<std::endl;
+		}
+	}
+}
+
+void CommodityManage::readData(std::string filename){
+	std::ifstream in(filename);
+#ifdef DEBUG
+	std::cout<<in<<std::endl;
+#endif
+	if(in){
+		int fileMax,fileSize;
+		long nextId;
+		in>>fileMax>>fileSize>>nextId;
+		Commodity::setNextId(nextId);
+		in>>fileMax>>fileSize;
+		long id;
+		std::string name,buf;
+		double price,discount;
+		int num;
+		for(int i=0;i<fileSize;++i){
+			in>>id;
+			std::getline(in,buf); //读取 id 后残留的回车要读到 buf 中
+			std::getline(in,name);
+			in>>price>>num>>discount;
+			addCommodity(Commodity(id,name,price,num,discount));
+		}
+	}
 }
