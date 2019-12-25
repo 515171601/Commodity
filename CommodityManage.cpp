@@ -4,6 +4,7 @@
 #include <fstream>
 #include <iostream>
 #include "header.h"
+#include <algorithm>
 
 
 using namespace std;
@@ -22,10 +23,76 @@ void CommodityManage::addCommodity(Commodity* p){
 		return;
 	}
 	pCommodities.push_back(p);
+	sortCommodities(); //添加商品后根据当前规则重新排序
 	return ;
 }
 
-//todo: 根据最终版本修改内容实现相同的功能
+void CommodityManage::sortCommodities(){
+	switch(sortType){
+		case SORT_BY_ID: //根据 id 排序
+			sort(pCommodities.begin(),pCommodities.end(),
+				 [=](Commodity* p1,Commodity* p2){
+				return p1->getId()<p2->getId();
+			});
+			break;
+		case SORT_BY_NAME: //根据名称排序
+			sort(pCommodities.begin(),pCommodities.end(),
+				 [=](Commodity* p1,Commodity* p2){
+				bool flag=0;
+				if(p1->getName()==p2->getName()){
+					flag=(p1->getId()<p2->getId());
+				}else{
+					flag=(p1->getName()<p2->getName());
+				}
+				return flag;
+			});
+			break;
+		case SORT_BY_TOTAL_PRICE: //根据净价排序
+			sort(pCommodities.begin(),pCommodities.end(),
+				 [=](Commodity* p1,Commodity* p2){
+				return p1->getNetPrice()<p2->getNetPrice();
+			});
+			break;
+		case SORT_BY_PRICE:
+			sort(pCommodities.begin (), pCommodities.end (),
+				 [=](Commodity* p1,Commodity* p2){
+				return p1->getPrice ()<p2->getPrice ();
+			});
+			break;
+		case SORT_BY_NUM:
+			sort(pCommodities.begin (), pCommodities.end (),
+				 [=](Commodity* p1,Commodity* p2){
+				return p1->getNum ()<p2->getNum ();
+			});
+			break;
+		default:
+			break;
+	}
+}
+
+void CommodityManage::sortCommoditiesByType(int type){
+	if(type==sortType){ //已经按指定规则排序，直接返回
+		return;
+	}
+	sortType=type;
+	sortCommodities();
+}
+
+//todo: 添加菜单
+void CommodityManage::printSortMenu() const{
+	printf(
+				"指定排序方式: \n"
+				"%d) 商品ID\n"
+				"%d) 商品名称\n"
+				"%d) 商品净价\n"
+				"%d) 商品数量\n"
+				"%d) 商品价格\n"
+				"输入选择项: \n"
+				, SORT_BY_ID, SORT_BY_NAME, SORT_BY_TOTAL_PRICE
+				, SORT_BY_NUM, SORT_BY_PRICE);
+	return ;
+}
+
 void CommodityManage::editCommodity(int id){
 	Commodity *pCommodity=findCommodityById (id);
 	if(pCommodity==nullptr){
@@ -62,21 +129,34 @@ void CommodityManage::viewCommodity(int id)const{
 
 void CommodityManage::viewAllCommodities()const{
 	cout<<"商品种类:"<< pCommodities.size()<<endl;
+	if(pCommodities.size()==0)
+		return;
+	this->printSortMenu ();
+	int type;
+	cin>>type;
+	while(getchar()!='\n');
+	const_cast<CommodityManage*>(this)->sortCommoditiesByType(type);
 	for(auto e:pCommodities)
 		e->output();
 }
 
 Commodity* CommodityManage::findCommodityById(int id){
-	for(auto e : pCommodities)
-		if(e->getId()==id)
-			return e;
+	vector<Commodity*>::iterator it=find_if(pCommodities.begin(),
+											pCommodities.end(),
+											[=](Commodity* p){
+		return p->getId()==id;});
+	if(it!=pCommodities.end())
+		return *it;
 	return nullptr;
 }
 
 const Commodity* CommodityManage::findCommodityById(int id)const{
-	for(auto e : pCommodities)
-		if(e->getId()==id)
-			return e;
+	vector<Commodity*>::const_iterator it=find_if(pCommodities.begin(),
+												  pCommodities.end(),
+												  [=](const Commodity* p){
+		return p->getId()==id;});
+	if(it!=pCommodities.end())
+		return *it;
 	return nullptr;
 }
 
@@ -167,4 +247,6 @@ void CommodityManage::readData(string filename) {
 			}
 		}
 	}
+	sortCommodities();
+	return ;
 }

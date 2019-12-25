@@ -23,6 +23,13 @@ private:
 	Commodity* findCommodityById(int id);
 	const Commodity* findCommodityById(int id)const;
 	std::vector<Commodity*>::iterator getIterator(Commodity* p);
+	int sortType=0; //记录当前排序类型
+	void sortCommodities();
+	void sortCommoditiesByType(int type);
+	void printSortMenu(void) const;
+
+	static const int SORT_BY_ID=0, SORT_BY_NAME=1, SORT_BY_TOTAL_PRICE=2,
+	SORT_BY_NUM=3, SORT_BY_PRICE=4;
 };
 #endif // COMMODITYMANAGE_H
 

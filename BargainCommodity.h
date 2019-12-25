@@ -5,7 +5,7 @@
 
 class BargainCommodity : public Commodity{
 public:
-	static const int SPECIALPRICE=4;
+	static const int SPECIALPRICE=3;
 
 	virtual ~BargainCommodity() =default;
 
@@ -21,11 +21,13 @@ public:
 		return ;
 	}
 
+	virtual double getPrice () const ;
+
 	virtual double getNetPrice()const;
 	virtual void output()const;
 	virtual int getType()const;
 	virtual std::string getInfo()const;
-//	virtual void editInfo ();
+	virtual void editInfo ();
 
 	virtual void printEditMenu (void);
 	virtual int getChoois (void);

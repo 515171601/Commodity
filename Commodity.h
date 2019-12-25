@@ -17,7 +17,7 @@ public:
 	void setName(std::string name){this->name=name;}
 
 	std::string getName()const{return name;}
-	double getPrice()const{return price;}
+	virtual double getPrice()const{return price;}
 	int getNum()const{return num;}
 	double getId()const{return id;}
 
@@ -29,7 +29,7 @@ public:
 	virtual void printEditMenu(void) const;
 	virtual int getChoois(void)const;
 	virtual void judgeChoois(int choois);
-	void editInfo(void);
+	virtual void editInfo(void);
 
 	static void setNextId(long id){nextId=id;}
 	static long getNextId(){return nextId;}
