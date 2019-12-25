@@ -35,13 +35,13 @@ std::string BargainCommodity::getInfo() const{
 	return ostr.str();
 }
 
-void BargainCommodity::editInfo(){
-	this->printEditMenu ();
-	this->judgeChoois (this->getChoois ());
-	cout<<"修改后的商品如下: \n";
-	this->output ();
-	return ;
-}
+//void BargainCommodity::editInfo(){
+//	this->printEditMenu ();
+//	this->judgeChoois (this->getChoois ());
+//	cout<<"修改后的商品如下: \n";
+//	this->output ();
+//	return ;
+//}
 
 void BargainCommodity::printEditMenu(){
 	Commodity::printEditMenu ();

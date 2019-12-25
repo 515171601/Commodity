@@ -30,7 +30,7 @@ public:
 	virtual void printEditMenu(void) const;
 	virtual int getChoois(void)const;
 	virtual void judgeChoois(int choois);
-	virtual void editInfo(void);
+	void editInfo(void);
 
 	static void setNextId(long id){nextId=id;}
 	static long getNextId(){return nextId;}
