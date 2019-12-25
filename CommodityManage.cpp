@@ -5,38 +5,27 @@
 #include <iostream>
 #include "header.h"
 
-//#define DEUBG
 
 using namespace std;
 
-CommodityManage::CommodityManage(const int s)
-	:maxSize(s),size(0){
-	pCommodities=new Commodity*[maxSize];
-}
-
 CommodityManage::~CommodityManage(){
-	for(int i=0;i<size;++i)
-		delete pCommodities[i];
-	delete[] pCommodities;
-	pCommodities=nullptr;
+	for(auto e:pCommodities){
+		delete e;
+	}
 }
 
 void CommodityManage::addCommodity(Commodity* p){
-	if(size==maxSize){
-		reAllocMemory();
-	}
 	Commodity* pCommodity=findCommodityById(p->getId());
 	if(pCommodity!=nullptr){
 		cout<<"编号为"<<p->getId()<<"的商品已经存在!累加其数量\n";
 		pCommodity->setNum(pCommodity->getNum()+p->getNum());
 		return;
 	}
-	pCommodities[size]=p;
-	size++;
-
+	pCommodities.push_back(p);
 	return ;
 }
 
+//todo: 根据最终版本修改内容实现相同的功能
 void CommodityManage::editCommodity(int id){
 	Commodity *pCommodity=findCommodityById (id);
 	if(pCommodity==nullptr){
@@ -47,7 +36,6 @@ void CommodityManage::editCommodity(int id){
 	pCommodity->output ();
 #endif
 	cout<<"输入需要修改的商品信息项: \n";
-	//todo: 调用commodity的成员函数进行修改, 此处使用多态调用
 	pCommodity->editInfo ();
 	return ;
 }
@@ -60,19 +48,11 @@ void CommodityManage::removeCommodity(int id){
 		return;
 	}
 	delete pCommodity;
-	size--;
-	Commodity **pos=pCommodities+size;
-	while(*pos!=pCommodity){
-		pos--;
-	}
-	while(pos<pCommodities+size){ //移动指针数组中的元素
-		*pos=*(pos+1);
-		pos++;
-	}
+	pCommodities.erase(getIterator(pCommodity));
 }
 
 void CommodityManage::viewCommodity(int id)const{
-	Commodity* pCommodity=findCommodityById(id);
+	const Commodity* pCommodity=findCommodityById(id);
 	if(pCommodity==nullptr){
 		cout<<"编号为"<<id<<"的商品不存在!\n";
 		return;
@@ -81,43 +61,45 @@ void CommodityManage::viewCommodity(int id)const{
 }
 
 void CommodityManage::viewAllCommodities()const{
-	cout<<"商品种类:"<<size<<endl;
-	for(int i=0;i<size;++i)
-		pCommodities[i]->output();
+	cout<<"商品种类:"<< pCommodities.size()<<endl;
+	for(auto e:pCommodities)
+		e->output();
 }
 
-Commodity* CommodityManage::findCommodityById(int id)const{
-	for(int i=0;i<size;++i){
-		if(pCommodities[i]->getId()==id){
-			return pCommodities[i];
-		}
-	}
+Commodity* CommodityManage::findCommodityById(int id){
+	for(auto e : pCommodities)
+		if(e->getId()==id)
+			return e;
 	return nullptr;
 }
 
-void CommodityManage::reAllocMemory(){
-	maxSize*=2;
-	int i;
-	Commodity **temp=pCommodities;
-	pCommodities=new Commodity*[maxSize];
-	for(i=0;i<size;++i)
-		pCommodities[i]=temp[i];
-	delete[] temp;
+const Commodity* CommodityManage::findCommodityById(int id)const{
+	for(auto e : pCommodities)
+		if(e->getId()==id)
+			return e;
+	return nullptr;
+}
+
+vector<Commodity*>::iterator CommodityManage::getIterator(Commodity* p){
+	for(auto it=pCommodities.begin();it!=pCommodities.end();++it)
+		if(*it==p)
+			return it;
+	return pCommodities.end();
 }
 
 void CommodityManage::checkOut()const{
 	double totalPrice=0;
 	int totalNum=0;
-	cout<<"商品种类: "<<size<<endl;
+	cout<<"商品种类: "<< pCommodities.size()<<endl;
 	cout<<" 商品名称\t\t"<<"价格\t"<<"件数\t"<<"总价\n";
-	for(int i=0;i<size;++i){
-		double price=pCommodities[i]->getNetPrice();
-		cout<<" "<<pCommodities[i]->getName()<<"\t";
-		cout<<pCommodities[i]->getPrice()<<"\t"
-		   <<pCommodities[i]->getNum()<<"\t"
+	for(auto e : pCommodities){
+		double price=e->getNetPrice();
+		cout<<" "<<e->getName()<<"\t";
+		cout<<e->getPrice()<<"\t"
+		   <<e->getNum()<<"\t"
 		  <<price<<endl;
 		totalPrice+=price;
-		totalNum+=pCommodities[i]->getNum();
+		totalNum+=e->getNum();
 	}
 	cout<<"购物篮商品总件数: "<<totalNum<<"\n";
 	cout<<"购物篮结算总价: "<<totalPrice<<endl;
@@ -126,11 +108,10 @@ void CommodityManage::checkOut()const{
 void CommodityManage::saveData(string filename){
 	ofstream out(filename);
 	if(out){
-		out<<maxSize<<endl;
-		out<<size<<endl;
+		out<< pCommodities.size()<<endl;
 		out<<Commodity::getNextId()<<endl;
-		for(int i=0;i<size;++i){
-			out<< pCommodities[i]->getInfo();
+		for(auto e : pCommodities){
+			out<<e->getInfo();
 		}
 	}
 #ifdef DEBUG
@@ -138,12 +119,13 @@ void CommodityManage::saveData(string filename){
 #endif
 }
 
+
 void CommodityManage::readData(string filename) {
 	ifstream in(filename);
 	if(in) {
-		int fileMax,fileSize;
+		int fileSize;
 		long nextId;
-		in>>fileMax>>fileSize>>nextId;
+		in>>fileSize>>nextId;
 		Commodity::setNextId(nextId);
 		int type;
 		long id;
