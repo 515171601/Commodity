@@ -26,10 +26,11 @@ public:
 	virtual int getType()const=0; //纯虚函数
 	virtual std::string getInfo()const;
 
+	//todo: 都调通后考虑封装性, 是否设置为private
 	virtual void printEditMenu(void) const;
 	virtual int getChoois(void)const;
 	virtual void judgeChoois(int choois);
-	void editInfo(void);
+	virtual void editInfo(void);
 
 	static void setNextId(long id){nextId=id;}
 	static long getNextId(){return nextId;}

@@ -36,13 +36,16 @@ string SecondHandCommodity::getInfo() const{
 	return ostr.str();
 }
 
-//void SecondHandCommodity::editInfo(){
-//	this->printEditMenu ();
-//	this->judgeChoois (this->getChoois ());
-//	cout<<"修改后的商品如下: \n";
-//	this->output ();
-//	return ;
-//}
+void SecondHandCommodity::editInfo(){
+#ifdef DEBUG
+	cerr<<"SecondHandCommodity\n";
+#endif
+	this->printEditMenu ();
+	this->judgeChoois (this->getChoois ());
+	cout<<"修改后的商品如下: \n";
+	this->output ();
+	return ;
+}
 
 void SecondHandCommodity::printEditMenu(){
 	NormalCommodity::printEditMenu ();

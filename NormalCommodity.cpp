@@ -36,13 +36,16 @@ string NormalCommodity::getInfo()const{
 	return ostr.str();
 }
 
-//void NormalCommodity::editInfo(){
-//	this->printEditMenu ();
-//	this->judgeChoois (this->getChoois ());
-//	cout<<"修改后的商品如下: \n";
-//	this->output ();
-//	return ;
-//}
+void NormalCommodity::editInfo(){
+#ifdef DEBUG
+	cerr<<"NormalCommodity\n";
+#endif
+	this->printEditMenu ();
+	this->judgeChoois (this->getChoois ());
+	cout<<"修改后的商品如下: \n";
+	this->output ();
+	return ;
+}
 
 void NormalCommodity::printEditMenu(){
 	Commodity::printEditMenu ();

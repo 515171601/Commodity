@@ -2,6 +2,8 @@
 #include "commodity.h"
 #include <sstream>
 
+#define DEBUG
+
 using namespace std;
 
 long Commodity::nextId=100;
@@ -71,6 +73,9 @@ void Commodity::judgeChoois(int choois){
 }
 
 void Commodity::editInfo(){
+#ifdef DEBUG
+	cerr<<"Commodity\n";
+#endif
 	this->printEditMenu ();
 	this->judgeChoois (this->getChoois ());
 	cout<<"修改后的商品如下: \n";
