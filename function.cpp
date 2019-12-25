@@ -14,33 +14,29 @@ char menu(){
 	cout<<"请输入功能选项:";
 	char choice;
 	cin>>choice;
-	//	while(getchar()!='\n');
 	return choice;
 }
 
 void doEditCommodity(CommodityManage& cm){
-	long id;
-	cout<<"Input id:";
-	cin>>id;
-	while(getchar()!='\n');
-	cm.editCommodity (id);
+	string name;
+	cout<<"Input name:";
+	cin>>name;
+	cm.editCommodity (name);
 	return ;
 }
 
 void doRemoveCommodity(CommodityManage& cm){
-	long id;
-	cout<<"Input id:";
-	cin>>id;
-	cm.removeCommodity(id);
-	//	while(getchar()!='\n');
+	string name;
+	cout<<"Input name:";
+	cin>>name;
+	cm.removeCommodity(name);
 }
 
 void doViewCommodity(const CommodityManage& cm){
-	long id;
-	cout<<"Input id:";
-	cin>>id;
-	cm.viewCommodity(id);
-	//	while(getchar()!='\n');
+	string name;
+	cout<<"Input name:";
+	cin>>name;
+	cm.viewCommodity(name);
 }
 
 void doViewAllCommodity(const CommodityManage& cm){
@@ -78,37 +74,46 @@ void doAddCommodity(CommodityManage& cm){
 	char choois=commodityClassificationMenu ();
 	cout<<"输入商品名称:";
 	getline(cin,name);
-	cout<<"输入价格和商品数量:";
-	cin>>price>>num;
-	switch(choois){
-		case '0':
-			cout<<"输入商品折扣:";
-			cin>>discount;
-			cm.addCommodity(new
-							NormalCommodity(name,price,num,discount));
-			break;
-		case '1':
-			cout<<"输入商品折扣和关税:";
-			cin>>discount>>tariff;
-			cm.addCommodity(new
-							OverseaCommodity(name,price,num,discount,tariff));
-			break;
-		case '2':
-			cout<<"输入商品折扣和折旧程度: ";
-			double depreciation;
-			cin>>discount>>depreciation;
-			cm.addCommodity (new SecondHandCommodity
-							 (name, price, num, discount, depreciation));
-			break;
-		case '3':
-			cout<<"输入商品特价: ";
-			double specialPrice;
-			cin>>specialPrice;
-			cm.addCommodity (new BargainCommodity
-							 (name, price, num, specialPrice));
-			break;
-		default:
-			break;
+	Commodity* pCommodity=cm.findCommodityByName (name);
+	if(pCommodity!=nullptr){
+		cout<<"名称为"<<name<<"的商品已经存在\n";
+		cout<<"输入添加的数量: ";
+		int newNum=0;
+		cin>>newNum;
+		pCommodity->setNum (newNum);
+	}else{
+		cout<<"输入价格和商品数量:";
+		cin>>price>>num;
+		switch(choois){
+			case '0':
+				cout<<"输入商品折扣:";
+				cin>>discount;
+				cm.addCommodity(new
+								NormalCommodity(name,price,num,discount));
+				break;
+			case '1':
+				cout<<"输入商品折扣和关税:";
+				cin>>discount>>tariff;
+				cm.addCommodity(new
+								OverseaCommodity(name,price,num,discount,tariff));
+				break;
+			case '2':
+				cout<<"输入商品折扣和折旧程度: ";
+				double depreciation;
+				cin>>discount>>depreciation;
+				cm.addCommodity (new SecondHandCommodity
+								 (name, price, num, discount, depreciation));
+				break;
+			case '3':
+				cout<<"输入商品特价: ";
+				double specialPrice;
+				cin>>specialPrice;
+				cm.addCommodity (new BargainCommodity
+								 (name, price, num, specialPrice));
+				break;
+			default:
+				break;
+		}
 	}
 	return ;
 }

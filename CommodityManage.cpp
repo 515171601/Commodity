@@ -27,6 +27,8 @@ void CommodityManage::addCommodity(Commodity* p){
 	return ;
 }
 
+
+
 void CommodityManage::sortCommodities(){
 	switch(sortType){
 		case SORT_BY_ID: //根据 id 排序
@@ -93,10 +95,10 @@ void CommodityManage::printSortMenu() const{
 	return ;
 }
 
-void CommodityManage::editCommodity(int id){
-	Commodity *pCommodity=findCommodityById (id);
+void CommodityManage::editCommodity(std::string _name){
+	Commodity *pCommodity=findCommodityByName (_name);
 	if(pCommodity==nullptr){
-		cout<<"编号为"<<id<<"的商品不存在!\n";
+		cout<<"名称为"<<_name<<"的商品不存在!\n";
 		return ;
 	}
 #ifdef	DEBUG
@@ -108,20 +110,20 @@ void CommodityManage::editCommodity(int id){
 }
 
 
-void CommodityManage::removeCommodity(int id){
-	Commodity* pCommodity=findCommodityById(id);
+void CommodityManage::removeCommodity(string _name){
+	Commodity *pCommodity=findCommodityByName (_name);
 	if(pCommodity==nullptr){
-		cout<<"编号为"<<id<<"的商品不存在!\n";
+		cout<<"名称为"<<_name<<"的商品不存在!\n";
 		return;
 	}
 	delete pCommodity;
 	pCommodities.erase(getIterator(pCommodity));
 }
 
-void CommodityManage::viewCommodity(int id)const{
-	const Commodity* pCommodity=findCommodityById(id);
+void CommodityManage::viewCommodity(string _name)const{
+	const Commodity *pCommodity=findCommodityByName (_name);
 	if(pCommodity==nullptr){
-		cout<<"编号为"<<id<<"的商品不存在!\n";
+		cout<<"名称为"<<_name<<"的商品不存在!\n";
 		return;
 	}
 	pCommodity->output();
@@ -141,29 +143,56 @@ void CommodityManage::viewAllCommodities()const{
 }
 
 Commodity* CommodityManage::findCommodityById(int id){
-	vector<Commodity*>::iterator it=find_if(pCommodities.begin(),
-											pCommodities.end(),
-											[=](Commodity* p){
+	vector<Commodity*>::iterator it=
+			find_if(pCommodities.begin(),pCommodities.end(),
+					[=](Commodity* p){
 		return p->getId()==id;});
-	if(it!=pCommodities.end())
+	if(it!=pCommodities.end()){
 		return *it;
+	}
 	return nullptr;
 }
 
 const Commodity* CommodityManage::findCommodityById(int id)const{
-	vector<Commodity*>::const_iterator it=find_if(pCommodities.begin(),
-												  pCommodities.end(),
-												  [=](const Commodity* p){
+	vector<Commodity*>::const_iterator it=
+			find_if(pCommodities.begin(),pCommodities.end(),
+					[=](const Commodity* p){
 		return p->getId()==id;});
-	if(it!=pCommodities.end())
+	if(it!=pCommodities.end()){
 		return *it;
+	}
+	return nullptr;
+}
+
+Commodity *CommodityManage::findCommodityByName(string name){
+	vector<Commodity*>::const_iterator it=
+			find_if(pCommodities.begin (), pCommodities.end (),
+					[=](Commodity* p){
+		return p->getName ()==name;
+	});
+	if(it!=pCommodities.end ()){
+		return *it;
+	}
+	return nullptr;
+}
+
+Commodity *CommodityManage::findCommodityByName(string name) const{
+	vector<Commodity*>::const_iterator it=
+			find_if(pCommodities.begin (), pCommodities.end (),
+					[=](const Commodity* p){
+		return p->getName ()==name;
+	});
+	if(it!=pCommodities.end ()){
+		return *it;
+	}
 	return nullptr;
 }
 
 vector<Commodity*>::iterator CommodityManage::getIterator(Commodity* p){
 	for(auto it=pCommodities.begin();it!=pCommodities.end();++it)
-		if(*it==p)
+		if(*it==p){
 			return it;
+		}
 	return pCommodities.end();
 }
 
