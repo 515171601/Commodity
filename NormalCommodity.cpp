@@ -35,3 +35,45 @@ string NormalCommodity::getInfo()const{
 	ostr<<discount<<endl; //输出子类信息
 	return ostr.str();
 }
+
+void NormalCommodity::editInfo(){
+	this->printEditMenu ();
+	this->judgeChoois (this->getChoois ());
+	cout<<"修改后的商品如下: \n";
+	this->output ();
+	return ;
+}
+
+void NormalCommodity::printEditMenu(){
+	Commodity::printEditMenu ();
+	printf(
+				"%d) 商品折扣\n"
+				, DISCOUNT);
+	return ;
+}
+
+int NormalCommodity::getChoois(){
+	char choois=0;
+	cin>>choois;
+	while(getchar()!='\n');
+	while(choois<'0'+NAME||choois>'0'+DISCOUNT){
+		cout<<"非法输入, 请重试!\n";
+		cin>>choois;
+		while(getchar()!='\n');
+	}
+	choois-='0';
+	return static_cast<int>(choois);
+}
+
+void NormalCommodity::judgeChoois(int choois){
+	Commodity::judgeChoois (choois);
+	switch (choois) {
+		case DISCOUNT:
+			cout<<"输入商品折扣: ";
+			cin>>this->discount;
+			break;
+		default:
+			break;
+	}
+	return ;
+}

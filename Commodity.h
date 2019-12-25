@@ -4,6 +4,8 @@
 
 class Commodity{
 public:
+	static const int NAME=0, PRICE=1, NUM=2;
+
 	virtual ~Commodity(){}
 
 	Commodity()=default;
@@ -24,15 +26,23 @@ public:
 	virtual int getType()const=0; //纯虚函数
 	virtual std::string getInfo()const;
 
+	//todo: 都调通后考虑封装性, 是否设置为private
+	virtual void printEditMenu(void) const;
+	virtual int getChoois(void)const;
+	virtual void judgeChoois(int choois);
+	virtual void editInfo(void);
+
 	static void setNextId(long id){nextId=id;}
 	static long getNextId(){return nextId;}
 
+
 private:
+	long autoNextId(){return nextId++;}
+
 	long id;
 	std::string name;
 	double price;	//商品价格
 	int num;		//购买数量
 	static long nextId;
-	long autoNextId(){return nextId++;}
 };
 #endif // COMMODITY_H

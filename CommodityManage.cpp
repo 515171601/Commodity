@@ -5,6 +5,8 @@
 #include <iostream>
 #include "header.h"
 
+//#define DEUBG
+
 using namespace std;
 
 CommodityManage::CommodityManage(const int s)
@@ -32,6 +34,21 @@ void CommodityManage::addCommodity(Commodity* p){
 	pCommodities[size]=p;
 	size++;
 
+	return ;
+}
+
+void CommodityManage::editCommodity(int id){
+	Commodity *pCommodity=findCommodityById (id);
+	if(pCommodity==nullptr){
+		cout<<"编号为"<<id<<"的商品不存在!\n";
+		return ;
+	}
+#ifdef	DEBUG
+	pCommodity->output ();
+#endif
+	cout<<"输入需要修改的商品信息项: \n";
+	//todo: 调用commodity的成员函数进行修改, 此处使用多态调用
+	pCommodity->editInfo ();
 	return ;
 }
 
@@ -70,9 +87,11 @@ void CommodityManage::viewAllCommodities()const{
 }
 
 Commodity* CommodityManage::findCommodityById(int id)const{
-	for(int i=0;i<size;++i)
-		if(pCommodities[i]->getId()==id)
+	for(int i=0;i<size;++i){
+		if(pCommodities[i]->getId()==id){
 			return pCommodities[i];
+		}
+	}
 	return nullptr;
 }
 
@@ -142,24 +161,24 @@ void CommodityManage::readData(string filename) {
 				case 0:
 					in>>discount;
 					addCommodity(new
-									NormalCommodity(id,name,price,num,discount));
+								 NormalCommodity(id,name,price,num,discount));
 					break;
 				case 1:
 					in>>discount>>tariff;
 					addCommodity(new
-									OverseaCommodity(id,name,price,num,discount,tariff));
+								 OverseaCommodity(id,name,price,num,discount,tariff));
 					break;
 				case 2:
 					double depreciation;
 					in>>discount>>depreciation;
 					addCommodity (new SecondHandCommodity
-									 (id,name, price, num, discount, depreciation));
+								  (id,name, price, num, discount, depreciation));
 					break;
 				case 3:
 					double specialPrice;
 					in>>specialPrice;
 					addCommodity (new BargainCommodity
-									 (id,name, price, num, specialPrice));
+								  (id,name, price, num, specialPrice));
 					break;
 				default:
 					break;

@@ -20,12 +20,15 @@ int main(){
 				doRemoveCommodity(cm);
 				break;
 			case '3':
-				doViewCommodity(cm);
+				doEditCommodity(cm);
 				break;
 			case '4':
-				doViewAllCommodity(cm);
+				doViewCommodity(cm);
 				break;
 			case '5':
+				doViewAllCommodity(cm);
+				break;
+			case '6':
 				doCheckout(cm);
 				break;
 			default:

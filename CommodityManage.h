@@ -11,6 +11,7 @@ public:
 	CommodityManage& operator=(const CommodityManage& c)=delete;
 	void addCommodity(Commodity* p);
 	void addCommodity(const Commodity& p);
+	void editCommodity(int id);
 	void removeCommodity(int id);
 	void viewCommodity(int id)const;
 	void viewAllCommodities()const;

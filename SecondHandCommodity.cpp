@@ -36,4 +36,46 @@ string SecondHandCommodity::getInfo() const{
 	return ostr.str();
 }
 
+void SecondHandCommodity::editInfo(){
+	this->printEditMenu ();
+	this->judgeChoois (this->getChoois ());
+	cout<<"修改后的商品如下: \n";
+	this->output ();
+	return ;
+}
+
+void SecondHandCommodity::printEditMenu(){
+	NormalCommodity::printEditMenu ();
+	printf(
+				"%d) 商品折旧程度\n"
+				,DEPRECIATION);
+	return ;
+}
+
+int SecondHandCommodity::getChoois(){
+	char choois=0;
+	cin>>choois;
+	while(getchar()!='\n');
+	while(choois<'0'+NAME||choois>'0'+DEPRECIATION){
+		cout<<"非法输入, 请重试!\n";
+		cin>>choois;
+		while(getchar()!='\n');
+	}
+	choois-='0';
+	return static_cast<int>(choois);
+}
+
+void SecondHandCommodity::judgeChoois(int choois){
+	NormalCommodity::judgeChoois (choois);
+	switch (choois) {
+		case DEPRECIATION:
+			cout<<"输入折旧程度: ";
+			cin>>this->depreciation;
+			break;
+		default:
+			break;
+	}
+	return ;
+}
+
 

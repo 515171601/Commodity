@@ -5,6 +5,8 @@
 
 class SecondHandCommodity: public NormalCommodity{
 public:
+	static const int DEPRECIATION=5;
+
 	virtual ~SecondHandCommodity() =default;
 
 	SecondHandCommodity(long id, std::string name,
@@ -25,6 +27,11 @@ public:
 	virtual void output()const;
 	virtual int getType()const;
 	virtual std::string getInfo()const;
+	virtual void editInfo ();
+
+	virtual void printEditMenu (void);
+	virtual int getChoois (void);
+	virtual void judgeChoois (int choois);
 
 private:
 	double depreciation;

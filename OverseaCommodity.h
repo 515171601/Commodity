@@ -5,6 +5,7 @@
 
 class OverseaCommodity : public Commodity{
 public:
+	static const int DISCOUNT=4, TARIFF=5;
 	virtual ~OverseaCommodity(){}
 
 	OverseaCommodity(long id,std::string name,
@@ -22,6 +23,11 @@ public:
 	virtual void output()const;
 	virtual int getType()const;
 	virtual std::string getInfo()const;
+	virtual void editInfo ();
+
+	virtual void printEditMenu (void);
+	virtual int getChoois (void);
+	virtual void judgeChoois (int choois);
 
 private:
 	double discount;
