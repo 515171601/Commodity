@@ -4,13 +4,10 @@
 using namespace std;
 
 int main(){
-#ifdef DEBUG
-	cerr<<"Ver2.3.2\n";
-#endif
 	cout<<"欢迎使用购物篮管理系统!\n";
 	char choice;
 	CommodityManage cm;
-	cm.readData("d:\\commodity04.data");
+	cm.readData("d:\\commodity05.data");
 	while(true){
 		choice=menu();
 		if(choice=='0')
@@ -39,7 +36,7 @@ int main(){
 				break;
 		}
 	}
-	cm.saveData("d:\\commodity04.data");
+	cm.saveData("d:\\commodity05.data");
 	cout<<"再见!\n";
 	return 0;
 }

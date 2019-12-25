@@ -36,16 +36,13 @@ string OverseaCommodity::getInfo()const{
 	return ostr.str();
 }
 
-void OverseaCommodity::editInfo(){
-#ifdef DEBUG
-	cerr<<"OverseaCommodity\n";
-#endif
-	this->printEditMenu ();
-	this->judgeChoois (this->getChoois ());
-	cout<<"修改后的商品如下: \n";
-	this->output ();
-	return ;
-}
+//void OverseaCommodity::editInfo(){
+//	this->printEditMenu ();
+//	this->judgeChoois (this->getChoois ());
+//	cout<<"修改后的商品如下: \n";
+//	this->output ();
+//	return ;
+//}
 
 void OverseaCommodity::printEditMenu(){
 	Commodity::printEditMenu ();
